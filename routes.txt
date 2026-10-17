@@ -1,0 +1,8 @@
+/
+/padhaaii
+/pricing
+/about
+/contact
+/privacy
+/terms
+/404

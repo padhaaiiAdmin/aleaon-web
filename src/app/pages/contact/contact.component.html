@@ -1,0 +1,124 @@
+<section class="section">
+  <div class="container layout">
+    <div class="side">
+      <span class="eyebrow">Book a demo</span>
+      <h1>See Padhaaii with your team</h1>
+      <p class="lead">Tell us a little about your school. We’ll get in touch to arrange a walkthrough at a time that suits you.</p>
+
+      <ul class="check-list">
+        <li>A guided tour of the modules your school needs</li>
+        <li>The web portal, the teacher app and the parent app</li>
+        <li>Answers on setup, pricing and moving your data</li>
+      </ul>
+
+      @if (site.contactEmail || site.contactPhone) {
+        <div class="direct">
+          <h2>Prefer to reach us directly?</h2>
+          @if (site.contactEmail) { <a [href]="'mailto:' + site.contactEmail">{{ site.contactEmail }}</a> }
+          @if (site.contactPhone) { <a [href]="'tel:' + site.contactPhone">{{ site.contactPhone }}</a> }
+        </div>
+      }
+    </div>
+
+    <div class="form-card">
+      @if (status() === 'sent') {
+        <div class="result" role="status">
+          <span class="result-icon"><app-icon name="check" [size]="28" /></span>
+          <h2>Thanks — we’ve got your request</h2>
+          <p>Someone from the Aleaon team will contact you shortly to arrange your demo.</p>
+          <a routerLink="/padhaaii" class="btn btn--secondary">Explore the product meanwhile</a>
+        </div>
+      } @else {
+        <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+          <div class="row">
+            <div class="field" [class.has-error]="invalid('name')">
+              <label for="f-name">Your name</label>
+              <input id="f-name" formControlName="name" autocomplete="name" />
+              @if (invalid('name')) { <span class="error">Please enter your name.</span> }
+            </div>
+            <div class="field" [class.has-error]="invalid('role')">
+              <label for="f-role">Your role</label>
+              <select id="f-role" formControlName="role">
+                <option value="" disabled>Select…</option>
+                @for (r of roles; track r) { <option [value]="r">{{ r }}</option> }
+              </select>
+              @if (invalid('role')) { <span class="error">Please choose your role.</span> }
+            </div>
+          </div>
+
+          <div class="field" [class.has-error]="invalid('school')">
+            <label for="f-school">School name</label>
+            <input id="f-school" formControlName="school" autocomplete="organization" />
+            @if (invalid('school')) { <span class="error">Please enter your school’s name.</span> }
+          </div>
+
+          <div class="row">
+            <div class="field" [class.has-error]="invalid('city')">
+              <label for="f-city">City</label>
+              <input id="f-city" formControlName="city" autocomplete="address-level2" />
+              @if (invalid('city')) { <span class="error">Please enter your city.</span> }
+            </div>
+            <div class="field" [class.has-error]="invalid('students')">
+              <label for="f-students">Number of students</label>
+              <select id="f-students" formControlName="students">
+                <option value="" disabled>Select…</option>
+                @for (s of sizes; track s) { <option [value]="s">{{ s }}</option> }
+              </select>
+              @if (invalid('students')) { <span class="error">Please choose a range.</span> }
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field" [class.has-error]="invalid('phone')">
+              <label for="f-phone">Mobile number</label>
+              <input id="f-phone" type="tel" formControlName="phone" autocomplete="tel" inputmode="tel" placeholder="98765 43210" />
+              @if (invalid('phone')) { <span class="error">Please enter a 10-digit Indian mobile number.</span> }
+            </div>
+            <div class="field" [class.has-error]="invalid('email')">
+              <label for="f-email">Email</label>
+              <input id="f-email" type="email" formControlName="email" autocomplete="email" />
+              @if (invalid('email')) { <span class="error">Please enter a valid email address.</span> }
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-plan">Plan you’re interested in</label>
+            <select id="f-plan" formControlName="plan">
+              @for (p of plans; track p) { <option [value]="p">{{ p }}</option> }
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="f-message">Anything we should know? <span class="optional">(optional)</span></label>
+            <textarea id="f-message" formControlName="message" rows="4"></textarea>
+          </div>
+
+          <div class="hp" aria-hidden="true">
+            <label for="f-website">Website</label>
+            <input id="f-website" formControlName="website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="consent" [class.has-error]="invalid('consent')">
+            <input id="f-consent" type="checkbox" formControlName="consent" />
+            <label for="f-consent">
+              I agree that Aleaon Technologies may use these details to contact me about a demo, as described in the
+              <a routerLink="/privacy">privacy policy</a>.
+            </label>
+          </div>
+          @if (invalid('consent')) { <span class="error">Please tick the box so we can contact you.</span> }
+
+          @if (status() === 'unavailable') {
+            <p class="notice" role="status">Online demo booking opens soon. Please check back in a few days.</p>
+          }
+          @if (status() === 'error') {
+            <p class="notice notice--error" role="alert">Something went wrong sending your request. Please try again.</p>
+          }
+
+          <button type="submit" class="btn btn--primary submit" [disabled]="status() === 'sending'">
+            {{ status() === 'sending' ? 'Sending…' : 'Request a demo' }}
+          </button>
+        </form>
+      }
+    </div>
+  </div>
+</section>

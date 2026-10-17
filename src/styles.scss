@@ -1,0 +1,218 @@
+@import '@fontsource/outfit/latin-400.css';
+@import '@fontsource/outfit/latin-500.css';
+@import '@fontsource/outfit/latin-600.css';
+@import '@fontsource/outfit/latin-700.css';
+
+/* ------------------------------------------------------------------
+   Aleaon / Padhaaii brand tokens — from the Padhaaii logo kit
+   ------------------------------------------------------------------ */
+:root {
+  --indigo-950: #1E1B4B;
+  --indigo-900: #312E81;
+  --indigo-800: #3730A3;
+  --indigo-100: #E0E7FF;
+  --indigo-50: #EEF2FF;
+  --night: #13113A;
+
+  --teal-700: #0F766E;
+  --teal-600: #0D9488;
+  --teal-300: #2DD4BF;
+  --cyan-400: #22D3EE;
+  --teal-50: #F0FDFA;
+
+  --slate-50: #F8FAFC;
+  --slate-100: #F1F5F9;
+  --slate-200: #E2E8F0;
+  --slate-300: #CBD5E1;
+  --slate-500: #64748B;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --white: #FFFFFF;
+
+  --ai-gradient: linear-gradient(45deg, #0D9488, #2DD4BF 55%, #22D3EE);
+
+  --font: 'Outfit', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --shadow: 0 1px 2px rgba(30, 27, 75, 0.06), 0 8px 24px rgba(30, 27, 75, 0.07);
+  --shadow-lg: 0 2px 4px rgba(30, 27, 75, 0.06), 0 24px 56px rgba(30, 27, 75, 0.14);
+
+  --container: 1160px;
+  --gutter: 24px;
+  --header-h: 72px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--slate-700);
+  background: var(--slate-50);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font);
+  color: var(--indigo-900);
+  line-height: 1.15;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+h1 { font-size: clamp(2.3rem, 5vw, 3.6rem); }
+h2 { font-size: clamp(1.8rem, 3.4vw, 2.5rem); }
+h3 { font-size: 1.2rem; letter-spacing: -0.005em; }
+
+p { margin: 0; }
+
+a {
+  color: var(--teal-700);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+a:hover { color: var(--indigo-800); }
+
+img, svg { display: block; max-width: 100%; }
+
+:focus-visible {
+  outline: 3px solid var(--teal-300);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------------- Layout ---------------- */
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@media (max-width: 480px) {
+  :root { --gutter: 16px; }
+}
+
+.section { padding-block: clamp(64px, 9vw, 112px); }
+.section--white { background: var(--white); }
+.section--dark { background: var(--indigo-950); color: var(--slate-300); }
+.section--dark h2, .section--dark h3 { color: var(--white); }
+
+.section-head {
+  max-width: 680px;
+  display: grid;
+  gap: 14px;
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+.section-head--center { margin-inline: auto; text-align: center; }
+.section-head p { font-size: 1.1rem; color: var(--slate-600); }
+.section--dark .section-head p { color: var(--slate-300); }
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal-700);
+}
+.section--dark .eyebrow { color: var(--teal-300); }
+
+.ai-text {
+  background: var(--ai-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------------- Buttons ---------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  font: 600 1rem/1 var(--font);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
+  white-space: nowrap;
+}
+.btn:active { transform: translateY(1px); }
+
+.btn--primary { background: var(--indigo-800); color: var(--white); }
+.btn--primary:hover { background: var(--indigo-950); color: var(--white); }
+
+.btn--secondary { background: transparent; color: var(--indigo-800); border-color: var(--indigo-100); }
+.btn--secondary:hover { border-color: var(--indigo-800); color: var(--indigo-950); }
+
+.btn--light { background: var(--white); color: var(--indigo-950); }
+.btn--light:hover { background: var(--teal-50); color: var(--indigo-950); }
+
+.btn--ghost-light { background: transparent; color: var(--white); border-color: rgba(255, 255, 255, 0.28); }
+.btn--ghost-light:hover { border-color: var(--white); color: var(--white); }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* ---------------- Cards & lists ---------------- */
+.card {
+  background: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+.check-list li {
+  position: relative;
+  padding-left: 30px;
+}
+.check-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--teal-50) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F766E' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 12px no-repeat;
+  box-shadow: inset 0 0 0 1px rgba(13, 148, 136, 0.3);
+}
+
+/* ---------------- Prose (legal pages) ---------------- */
+.prose { max-width: 760px; }
+.prose h2 { font-size: 1.4rem; margin: 40px 0 12px; }
+.prose p, .prose ul { margin: 0 0 14px; }
+.prose ul { padding-left: 22px; }
+.prose li { margin-bottom: 6px; }

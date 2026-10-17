@@ -1,0 +1,93 @@
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <img class="product-mark" src="/brand/padhaaii/padhaaii-lockup-horizontal.svg" alt="Padhaaii" width="200" height="53" />
+      <h1>Run your whole school from <span class="ai-text">one place</span>.</h1>
+      <p class="lead">
+        Padhaaii is school management software built for Indian K-12 schools — admissions,
+        attendance, timetables, fees, report cards and parent communication, on the web and on every phone.
+      </p>
+      <div class="btn-row">
+        <a routerLink="/contact" class="btn btn--primary">Book a demo <app-icon name="arrow" [size]="18" /></a>
+        <a routerLink="/padhaaii" class="btn btn--secondary">See the product</a>
+      </div>
+      <ul class="facts" aria-label="Highlights">
+        <li><app-icon name="mobile" [size]="18" /> Apps for parents and teachers</li>
+        <li><app-icon name="fingerprint" [size]="18" /> Biometric staff attendance</li>
+        <li><app-icon name="cloud" [size]="18" /> Hosted in India</li>
+      </ul>
+    </div>
+    <div class="hero-visual">
+      <app-screenshot alt="Padhaaii admin dashboard" src="/screens/dashboard.webp" [eager]="true" />
+      <app-screenshot class="hero-phone" alt="Parent app showing a child’s attendance" src="/screens/parent-attendance.webp" device="phone" />
+    </div>
+  </div>
+</section>
+
+<section class="section section--white" aria-labelledby="modules-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Everything in one system</span>
+      <h2 id="modules-title">Every office in your school, connected</h2>
+      <p>Instead of registers, spreadsheets and separate apps, the front office, staff room and parents all work from the same records.</p>
+    </div>
+    <div class="module-grid">
+      @for (m of modules; track m.id) {
+        <a class="module" routerLink="/padhaaii" [fragment]="m.id">
+          <span class="module-icon"><app-icon [name]="m.icon" /></span>
+          <h3>{{ m.name }}</h3>
+          <p>{{ m.summary }}</p>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="apps-title">
+  <div class="container split">
+    <div class="split-copy">
+      <span class="eyebrow">Mobile apps</span>
+      <h2 id="apps-title">The school in every parent’s and teacher’s pocket</h2>
+      <ul class="check-list">
+        <li>Parents see attendance, timetable, marks, fee status and notices — one login covers all their children.</li>
+        <li>Class teachers manage their whole class; subject teachers see only what they teach.</li>
+        <li>Leave requests, assignments and announcements arrive as push notifications.</li>
+      </ul>
+    </div>
+    <div class="phones">
+      <app-screenshot alt="Parent app home with child switcher and timetable" src="/screens/parent-home.webp" device="phone" />
+      <app-screenshot alt="Teacher app home with today’s periods" src="/screens/teacher-home.webp" device="phone" />
+    </div>
+  </div>
+</section>
+
+<section class="section section--white" aria-labelledby="steps-title">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <span class="eyebrow">Getting started</span>
+      <h2 id="steps-title">Live in three steps</h2>
+    </div>
+    <ol class="steps">
+      @for (s of steps; track s.title; let i = $index) {
+        <li class="step">
+          <span class="step-num">{{ i + 1 }}</span>
+          <h3>{{ s.title }}</h3>
+          <p>{{ s.text }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="pricing-title">
+  <div class="container pricing-teaser">
+    <div>
+      <span class="eyebrow">Pricing</span>
+      <h2 id="pricing-title">Two plans: Standard and Premium</h2>
+      <p>Pricing depends on your school’s size. Tell us about your school and we’ll send a quote.</p>
+    </div>
+    <a routerLink="/pricing" class="btn btn--secondary">Compare plans</a>
+  </div>
+</section>
+
+<app-demo-band />
